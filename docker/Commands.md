@@ -126,3 +126,45 @@
 <pre>
 <code>$ docker volume prune</code>
 </pre>
+
+</br>
+<p>Esse comando permite fazer o download de uma imagem.</p>
+<pre>
+<code>$ docker pull nome_da_imagem</code>
+</pre>
+
+</br>
+<p>Esse comando permite listar todas as imagens que estão na máquina.</p>
+<pre>
+<code>$ docker images</code>
+</pre>
+
+</br>
+<p>Esse comando permite remover alguma imagem que está na máquina.</p>
+<pre>
+<code>$ docker rmi nome_da_imagem</code>
+</pre>
+
+</br>
+<p>Esse comando permite subir no repositório do docker hub a imagem personalizada a partir de um Dockerfile. O parametro -t representa qual tag e o nome da imagem vai ser feito o build no Docker hub. No exemplo abaixo, está sendo feito a build com a tag <strong>gabrielsantos</strong> e o nome da imagem como <strong>nginx-com-vim</strong></p>
+<pre>
+<code>$ docker build -t gabrielsantos/nginx-com-vim:latest .</code>
+</pre>
+
+</br>
+<p>Esse comando remove todos os containers eles estando ativos ou não.</p>
+<pre>
+<code>$ docker rm $(docker ps -a -q) -f</code>
+</pre>
+
+</br>
+<p>Esse comando permite fazer login na conta do docker hub.</p>
+<pre>
+<code>$ docker login</code>
+</pre>
+
+</br>
+<p>Esse comando permite fazer o upload no docker hub. No exemplo, está sendo feito o upload no usuário gabrielsantos, e o nome da imagem vai ser nginx-com-vim.</p>
+<pre>
+<code>$ docker push gabrielsantos/nginx-com-vim/</code>
+</pre>
