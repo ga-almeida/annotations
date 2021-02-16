@@ -168,3 +168,45 @@
 <pre>
 <code>$ docker push gabrielsantos/nginx-com-vim/</code>
 </pre>
+
+</br>
+<p>Esse comando permite listar todas as networks.</p>
+<pre>
+<code>$ docker network ls</code>
+</pre>
+
+</br>
+<p>Esse comando permite remover todas as networks que não estão sendo utilizadas.</p>
+<pre>
+<code>$ docker network prune</code>
+</pre>
+
+</br>
+<p>Esse comando permite inspecionar a network e verificar quais container estão conectados naquela rede. No exemplo, estamos inspecionando a network minharede.</p>
+<pre>
+<code>$ docker network inspect minharede</code>
+</pre>
+
+</br>
+<p>Esse comando permite entrar com o terminal bash no container.</p>
+<pre>
+<code>$ docker attach nome_do_container</code>
+</pre>
+
+</br>
+<p>Esse comando permite criar uma rede. No exemplo, está sendo criado uma rede do tipo bridge com o nome minharede.</p>
+<pre>
+<code>$ docker network create --driver bridge minharede</code>
+</pre>
+
+</br>
+<p>Esse comando permite adicionar uma network ao container no momento de criação do mesmo. No exemplo, está sendo criado um container com a network minharede.</p>
+<pre>
+<code>$ docker run -d -it --name ubuntu --network minharede bash</code>
+</pre>
+
+</br>
+<p>Esse comando permite conectar algum container em uma network. No exemplo, está sendo conectado o container ubuntu na network minharede.</p>
+<pre>
+<code>$ docker network connect minharede ubuntu</code>
+</pre>
