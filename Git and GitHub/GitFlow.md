@@ -1,5 +1,5 @@
 **Anotações**
-<p>Branch Master/Main: é uma ramificação que representa o projeto em produção..</p>
+<p>Branch Master/Main: é uma ramificação que representa o projeto em produção.</p>
 
 <p>Branch Develop: é uma ramificação de uma master que sempre fará merge para branch release.</p>
 
