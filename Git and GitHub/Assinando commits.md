@@ -42,6 +42,16 @@
 <code>$ git config --global tag.gpgSign true</code>
 </pre>
 
+</br>
+<p>Essa instrução permite editar as configurações da chave GPG.</p>
+<pre>
+<code>$ gpg --edit-key id_da_chave</code>
+<code><strong>adduid: </strong>Cadastrar um novo nome e id</code>
+<code><strong>uid 2: </strong>Seleciona o usuário dois cadastrado</code>
+<code><strong>trust: </strong>Selecionar qual o nivel de confiança desse usuário. Confirmar a ação com Y</code>
+<code><strong>save: </strong>Salva as configurações feitas</code>
+</pre>
+
 **Adicionar no git hub a chave public cadastrada no PC**
 
 <ul>
