@@ -10,3 +10,11 @@
 <li>Selecionar a opção "Restrict who can push to matching branches" permite que somente as pessoas ou grupos selecionados possam dar um push nas branchs de acordo com a regra.</li>
 <li>Selecionar a opção "Require signed commits" permite que sejam feitos push na branch de acordo com a regra somente os commits assinados.</li>
 </ul>
+
+**Trabalhando com Pull Request**
+
+<ul>
+<li>Clicar na aba "Pull requests" ou no botão "Compare & pull requests".</li>
+<li>Preencher o PR de acordo com a necessidade e clicar em "create pull request".</li>
+<li>Depois de todos aproves necessários clicar em "Merge pull request" e "Confirme merge". Caso queira, clicar em "Delete branch".</li>
+</ul>

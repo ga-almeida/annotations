@@ -1,0 +1,37 @@
+**Configurar projeto NodeJs**
+
+Seguir o tutorial nesse link abaixo:
+https://www.notion.so/ESLint-e-Prettier-Trilha-Node-js-d3f3ef576e7f45dfbbde5c25fa662779#eaf6e8bdcabc4d809cdae302e29750da"
+
+-----------------------------------------------------------------------
+
+Instalar a uma dependencia que facilita o gerenciamento de conversão dos arquivos typescript para javascript conforme abaixo:
+
+yarn add ts-node-dev -D
+
+-----------------------------------------------------------------------
+
+Colocar no arquivo packeage.json um script conforme o exemplo abaixo:
+
+"scripts" : {
+  "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+} 
+
+------------TSCONFIG.JSON--------------------------------
+
+No arquivo tsconfig habilitar e desabilitar as funcionaldiades abaixo:
+
+"strict": true //comentar essa linha
+
+---------------Configurando DEBUG no VSCODE--------------------------------------
+
+Clicar no botão de Debug do VSCODE;
+
+Clicar em "create a launch.json file";
+
+Clicar na opção "node";
+
+Mudar as propriedades abaixo:
+
+"type": "node",
+"request": "attach",
