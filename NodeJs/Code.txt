@@ -1,0 +1,320 @@
+**Código de bibliotecas ou conceitos para NodeJs**
+
+-----------UPLOAD DE ARQUIVOS COM MULTER-----------------
+
+yarn add multer
+yarn add @types/multer -D
+
+// biblioteca para ler arquivos csv
+yarn add csv-parse
+
+Fazer a importação aonde vai utilizar o multer.
+
+import multer from "multer";
+
+Criar uma pasta no projeto para mandar os arquivos de upload. No exemplo será utilizada uma pasta temporária na raiz do projeto chamada "tmp", assim que utilizar esses arquivos será feito a deleção.
+
+const upload = multer({
+  dest: "./tmp",
+});
+
+O multer funciona como um middleware, logo deverá ser passado como parametro para a rota. Conforme o exemplo abaixo.
+
+//route
+categoriesRoutes.post("/import", upload.single("file"), (request, response) => {
+  return importCategoryController.handle(request, response);
+});
+
+//controller
+import { Request, Response } from "express";
+
+import { ImportCategoryUseCase } from "./ImportCategoryUseCase";
+
+class ImportCategoryController {
+  constructor(private importCategoryUseCase: ImportCategoryUseCase) {}
+
+  handle(request: Request, response: Response): Response {
+   /**
+   * O nome da váriavel deve ser o mesmo
+   * que foi passado como parametro para o upload.single("file")
+   */
+    const { file } = request;
+
+    this.importCategoryUseCase.execute(file);
+
+    return response.send();
+  }
+}
+
+export { ImportCategoryController };
+
+
+// service ou useCase
+import csVparse from "csv-parse";
+import fs from "fs";
+
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
+
+interface IImportCategory {
+  name: string;
+  description: string;
+}
+
+class ImportCategoryUseCase {
+  constructor(private categoriesRepository: ICategoriesRepository) {}
+
+  /**
+   * Funcão para leitura de arquivo
+   * @param file Arquivo que será manipulado
+   * @returns Returna um array com as informaçõpes manipuladas
+   */
+  loadCategory(file: Express.Multer.File): Promise<IImportCategory[]> {
+    return new Promise((resolve, reject) => {
+      const categories: IImportCategory[] = [];
+
+      /**
+       * Criar leitura do arquivo
+       */
+      const stream = fs.createReadStream(file.path);
+
+      /**
+       * Por padrão o csvParse entende que o
+       * delimitador (separador de informações) é a vírgula (,).
+       */
+      const parseFile = csVparse();
+
+      /**
+       * Pega informação de dentro do arquivo e coloca em outro lugar
+       */
+      stream.pipe(parseFile);
+
+      /**
+       * Retornar o array se tudo der certo,
+       * ou um erro caso de errado.
+       */
+      parseFile
+        .on("data", async (line) => {
+          const [name, description] = line;
+
+          categories.push({
+            name,
+            description,
+          });
+        })
+        .on("end", () => {
+          /**
+           * Remove o arquivo da pasta temporária
+           */
+          fs.promises.unlink(file.path);
+          resolve(categories);
+        })
+        .on("error", (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  async execute(file: Express.Multer.File): Promise<void> {
+    const categories = await this.loadCategory(file);
+
+    /**
+     * Faz a leitura de cada array e salva no repositório
+     */
+    categories.map(async (category) => {
+      const { name, description } = category;
+
+      const existCategory = this.categoriesRepository.findByName(name);
+
+      if (!existCategory) {
+        this.categoriesRepository.create({
+          name,
+          description,
+        });
+      }
+    });
+  }
+}
+
+export { ImportCategoryUseCase };
+
+--------------------Documentação de API com SWAGGER-----------------------
+
+yarn add swagger-ui-express
+yarn add @types/swagger-ui-express -D
+
+Criar um arquivo json dentro da pasta "src" com o nome swagger.json.
+
+{
+  "openapi": "3.0.0",
+  "info": {
+    // Titulo da documentação
+    "title": "Rentalx Documentation",
+
+    // Descrição da documentação
+    "description": "This is an API Rent", 
+
+    // Versão da documentação
+    "version": "1.0.0",
+
+    // Contato do dev
+    "contact": {
+      "email": "gabrielsantos.almeida@hotmail.com"
+    }
+  },
+  
+  // Mapeamento das rotas e informações para o que elas servem
+  "paths": {
+  
+    // Exemplo da rota "/categories"
+    "/categories": {
+      
+      // O tipo do verbo da rota, no exemplo "post"
+      "post": {
+      
+      	// Definir uma tag
+      	"tags": ["Category"],
+      	
+      	// Resumo da rota
+        "summary": "Create a category",
+        
+        // Descrição da rota
+        "description": "Create a new category",
+        
+        // O corpo da rota caso exista
+        "requestBody": {
+        
+          // O conteúdo da rota
+          "content": {
+          
+            // O tipo que a rota recebe como valor , no exemplo "json"
+            "application/json": {
+            
+              // Definição dos tipos e atributos
+              "schema": {
+                "type": "object",
+                
+                // as propriedades que é passado no corpo da requisição
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                
+                // Exemplo de como deve ser passado para o corpo da requisição 
+                "example": {
+                  "name": "Category name sample",
+                  "description": "Category description sample"
+                }
+              }
+            }
+          }
+        },
+        
+        // Definição das possiveis respostas da rota
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Category already exists"
+          }
+        }
+      },
+      
+      // Exemplo de um rota do tipo get
+      "get": {
+        "tags": ["Category"],
+        "summary": "List categories",
+        "description": "List all categories",
+        "responses": {
+          "200": {
+            "description": "Success",
+            
+            // Exemplo de conteúdo que será retornado
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                      	 "type": "string",
+                      	 "format": "date-time"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+Fazer a importação do swagger no arquivo onde sobe o servidor do projeto. E disponibilizar uma rota para a documentação das apis.
+
+import express from "express";
+import swaggerUi from "swagger-ui-express";
+
+import swaggerFile from "./swagger.json";
+
+const app = express();
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
+-------------UTILIZAR TYPEORM PARA UTILIZAR BANCO DE DADOS-------------
+
+Instalar a biblioteca typeorm com reflect metadata
+
+yarn add typeorm reflect-metadata
+
+Instalar o driver do banco de dados que irá utilizar no projeto, exemplo postgres:
+
+yarn add pg
+
+Deixar as configurações abaixo no tsconfig.json como true:
+
+"experimentalDecorators": true,
+"emitDecoratorMetadata": true,  
+
+Criar um pasta chamada "database" dentro da pasta "src".
+
+Dentro da pasta "database", criar um arquivo "index.ts" com o conteúdo abaixo.
+
+import { createConnection } from "typeorm";
+
+createConnection();
+
+Fazer o import do arquivo index.ts no dentro da database no local que sobe a aplicação, exemplo no server.ts.
+
+import "./database";
+
+Criar um arquivo na raiz do projeto chamado de "ormconfig.json" com o conteúdo abaixo, como exemplo seguindo a ideia de utilizar o postgres.
+
+{
+  "type": "postgres",
+  "port": 5432,
+  "host": "localhost",
+  "username": "docker",
+  "password": "ignite",
+  "database": "rentx"
+}
+
+
+

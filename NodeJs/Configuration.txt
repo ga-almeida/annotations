@@ -1,7 +1,14 @@
 **Configurar projeto NodeJs**
 
+yarn init -y
+
+yarn add typescript -D
+
+yarn tsc --init
+--------------------------------------------------------------
+
 Seguir o tutorial nesse link abaixo:
-https://www.notion.so/ESLint-e-Prettier-Trilha-Node-js-d3f3ef576e7f45dfbbde5c25fa662779#eaf6e8bdcabc4d809cdae302e29750da"
+https://www.notion.so/ESLint-e-Prettier-Trilha-Node-js-d3f3ef576e7f45dfbbde5c25fa662779#eaf6e8bdcabc4d809cdae302e29750da
 
 -----------------------------------------------------------------------
 
@@ -22,6 +29,7 @@ Colocar no arquivo packeage.json um script conforme o exemplo abaixo:
 No arquivo tsconfig habilitar e desabilitar as funcionaldiades abaixo:
 
 "strict": true //comentar essa linha
+"resolveJsonModule": true //essa propriedade permite importar arquivos json
 
 ---------------Configurando DEBUG no VSCODE--------------------------------------
 
