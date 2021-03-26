@@ -301,20 +301,74 @@ import { createConnection } from "typeorm";
 
 createConnection();
 
-Fazer o import do arquivo index.ts no dentro da database no local que sobe a aplicação, exemplo no server.ts.
+Fazer o import do arquivo index.ts no dentro da database no local que sobe a aplicação, exemplo no server.ts, OBS: importar antes das importações das rotas.
 
 import "./database";
 
-Criar um arquivo na raiz do projeto chamado de "ormconfig.json" com o conteúdo abaixo, como exemplo seguindo a ideia de utilizar o postgres.
+Criar um arquivo na raiz do projeto chamado de "ormconfig.json" com o conteúdo abaixo, como exemplo seguindo a ideia de utilizar o postgres. Criar tambem uma pasta chamada "migrations" dentro da pasta "database" para mapear nossas migrations.
 
 {
   "type": "postgres",
   "port": 5432,
-  "host": "localhost",
+  "host": "database_ignite",
   "username": "docker",
   "password": "ignite",
-  "database": "rentx"
+  "database": "rentx",
+  "migrations": ["./src/database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
 }
 
+Criar um script em packeage.json para rodar os comandos cli do type orm
+
+  "scripts": {
+    .......outros scripts prontos............
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli"
+  }
+  
+Os comandos abaixo executam algumas ações do typeorm.
+
+// Cria uma migration
+yarn typeorm migration:create -n CreateCategories
+  
+// O comando executa todas as migrations que ainda não foram executadas
+yarn typeorm migration:run
+
+// Reverte todas as migrations que ja foram executadas
+yarn typeorm migration:revert
+
+// Exemplo de um repositorio utilizando typeorm
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/cars/repositories/implementations/CategoriesRepository.ts
+
+// Exemplo de um entite utilizando
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/cars/entities/Category.ts
 
 
+------INJEÇÃO DE DEPENDENCIAS COM TSRYINGE------------------------------------
+
+yarn add tsyringe reflect-metadata
+
+Deixar as configurações abaixo no tsconfig.json como true:
+
+"experimentalDecorators": true,
+"emitDecoratorMetadata": true,  
+
+
+Criar um arquivo "index.ts" no caminho "src/shared/container".
+
+Exemplo do arquivo "index.ts"
+https://github.com/ga-almeida/rentalx/blob/main/src/shared/container/index.ts
+
+Exemplo da injeção no service
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/cars/useCases/createCategory/CreateCategoryUseCase.ts
+
+Exemplo da injeção no controller
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/cars/useCases/createCategory/CreateCategoryController.ts
+
+Exemplo de uma rota utilizando injeção, rota creategoriesRoutes.post
+https://github.com/ga-almeida/rentalx/blob/main/src/routes/categories.routes.ts
+
+Fazer import do "index.ts" no caminho "src/shared/container" no arquivo que sobe o servidor da aplicação, exemplo "server". OBS: importar antes da importação das rotas.
+
+import "./shared/container";
