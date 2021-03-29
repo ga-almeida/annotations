@@ -394,7 +394,30 @@ na hora de gerar o token (segestão: utilizar algum gerador como o MD5 https://w
 e o expireIn seria o tempo de expiração (1d significa que o tempo de expiração do token é de um dia).
 https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase.ts
 
+Exemplo de um middlaware para autenticar as rotas.
+https://github.com/ga-almeida/rentalx/blob/main/src/middlewares/ensureAuthenticated.ts
 
+Exemplo de como utilizar midlaware em todas as rotas daquele arquivo.
+https://github.com/ga-almeida/rentalx/blob/main/src/routes/specifications.routes.ts
+
+------------------TRABALHAR COM ERROS------------------------------
+
+yarn add express-async-errors
+
+Fazer a importação no arquivo de configuração do servidor, logo depois do express.
+import "express-async-errors";
+Exemplo: https://github.com/ga-almeida/rentalx/blob/main/src/server.ts
+
+Criar um arquivo de modelo para gerenciar os erros.
+https://github.com/ga-almeida/rentalx/blob/main/src/errors/AppError.ts
+
+Exemplo de como utilizar a classe costumizada para algum determinado erro.
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/useCases/createUser/CreateUserUseCase.ts
+https://github.com/ga-almeida/rentalx/blob/main/src/middlewares/ensureAuthenticated.ts
+
+
+Exemplo de como capturar o erro e devolver como resposta a classe costumizada, será utlizada um middlaware para verificar todas as rotas.
+https://github.com/ga-almeida/rentalx/blob/main/src/server.ts
 
 
 
