@@ -372,3 +372,74 @@ https://github.com/ga-almeida/rentalx/blob/main/src/routes/categories.routes.ts
 Fazer import do "index.ts" no caminho "src/shared/container" no arquivo que sobe o servidor da aplicação, exemplo "server". OBS: importar antes da importação das rotas.
 
 import "./shared/container";
+
+-----------------CRIPTOGRAFIA DE SENHA COM BCRYPT---------------------------------------
+
+yarn add bcrypt
+yarn add @types/bcrypt -D
+
+Exemplo abaixo utilizando o hash do bcrypt para gerar uma senha com o nivel de dificuldade 8.
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/useCases/createUser/CreateUserUseCase.ts
+
+Exemplo abaixo utilizando o compare do bcrypt para comparar se as senhas são as mesmas.
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase.ts
+
+-----------------AUTENTICAÇÃO COM JSON WEB TOKEN---------------------------------------
+
+yarn add jsonwebtoken
+yarn add @types/jsonwebtoken -D
+
+Exemplo abaixo para gerar token. Primeiro parametro do sign seria um objeto para passar informações com o nome do usuário, permissões por exemplo. Segundo parametro seria a palavra secreta
+na hora de gerar o token (segestão: utilizar algum gerador como o MD5 https://www.md5hashgenerator.com/). O terceiro parametro seria um objeto, onde o subject pdoeria ser o identificador do usuário,
+e o expireIn seria o tempo de expiração (1d significa que o tempo de expiração do token é de um dia).
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase.ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
