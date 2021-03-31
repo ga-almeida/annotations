@@ -137,6 +137,12 @@ class ImportCategoryUseCase {
 
 export { ImportCategoryUseCase };
 
+Exemplo de exportar a configuração do upload em outro arquivo
+https://github.com/ga-almeida/rentalx/blob/main/src/config/upload.ts
+
+Exemplo de uso na rota "users"
+https://github.com/ga-almeida/rentalx/blob/main/src/routes/users.routes.ts
+
 --------------------Documentação de API com SWAGGER-----------------------
 
 yarn add swagger-ui-express
@@ -420,8 +426,13 @@ Exemplo de como capturar o erro e devolver como resposta a classe costumizada, s
 https://github.com/ga-almeida/rentalx/blob/main/src/server.ts
 
 
+---------------------SUBRESCREVENDO TIPOS----------------------------------------------
+Cirar uma pasta chamada "@types" dentro do "src"
 
+Dentro dessa pasta criar uma pasta com o nome da biblioteca, exemplo "express"
 
+Criar um arquivo chamado "index.d.ts"
+https://github.com/ga-almeida/rentalx/blob/main/src/%40types/express/index.d.ts
 
 
 
