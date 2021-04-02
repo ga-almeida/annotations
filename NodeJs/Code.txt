@@ -435,18 +435,43 @@ Criar um arquivo chamado "index.d.ts"
 https://github.com/ga-almeida/rentalx/blob/main/src/%40types/express/index.d.ts
 
 
+-----------------EXEMPLO DE ALGUMAS CONSULTAS AVANÇADAS COM TYPEORM------------------
+https://github.com/ga-almeida/ignite-template-database-queries
+
+-----------------JEST PARA TESTES----------------------------------------------
+yarn add jest @types/jest -D
+yarn add ts-jest -D
+yarn jest --init
+
+✔ Would you like to use Jest when running "test" script in "package.json"? … yes
+✔ Would you like to use Typescript for the configuration file? … yes
+✔ Choose the test environment that will be used for testing › node
+✔ Do you want Jest to add coverage reports? … no
+✔ Which provider should be used to instrument code for coverage? › v8
+✔ Automatically clear mock calls and instances between every test? … yes
+
+Exemplo jest.config.json
+https://github.com/ga-almeida/rentalx/blob/main/jest.config.ts
+
+Exemplo de testes
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase.spec.ts
 
 
+---------------MELHORANDO OS IMPORTS-------------------------------------
+yarn add tsconfig-paths -D
+
+Adicionar "-r tsconfig-paths/register" em todo que executa arquivos que contem a personalização dos paths, exemplo "dev" e "typeorm".
+https://github.com/ga-almeida/rentalx/blob/main/package.json
 
 
+configurar o tsconfig a propriedade paths e basuUrl
+https://github.com/ga-almeida/rentalx/blob/main/tsconfig.json
 
+No eslintrc alterar o valor de groups deixando '@shared' para '@' pra ele entender que é um importação da aplicação
+https://github.com/ga-almeida/rentalx/blob/main/.eslintrc.json
 
-
-
-
-
-
-
+Caso utilize o Jest, é preciso configurar o moduleNameMapper, é necessario tambem tirar todos os comentários do tsconfig.json.
+https://github.com/ga-almeida/rentalx/blob/main/jest.config.ts
 
 
 

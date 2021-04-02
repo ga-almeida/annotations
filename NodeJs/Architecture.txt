@@ -1,0 +1,5 @@
+**Arquitetura SOLID**
+
+src/modules/infra: Toda bliblioteca externa que futuramente pode vir a mudar
+
+
