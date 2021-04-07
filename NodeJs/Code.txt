@@ -474,11 +474,19 @@ Caso utilize o Jest, é preciso configurar o moduleNameMapper, é necessario tam
 https://github.com/ga-almeida/rentalx/blob/main/jest.config.ts
 
 
+---------------TESTES DE INTEGRAÇÃO (NECESSÁRIO CONFIGURAR O JEST ANTES)-------------------------------------
+yarn add supertest @types/supertest -D
+
+Duplicar o arquivo que sobe o servidor para poder utilizar nos tests, e remover o listen desse arquivo cópia para não subir o servidor. Exemplo, duplicar o server.ts para um arquivo chamado app.rs e exportar a variavel de inicialização.
+https://github.com/ga-almeida/rentalx/blob/main/src/shared/infra/http/app.ts
+https://github.com/ga-almeida/rentalx/blob/main/src/shared/infra/http/server.ts
 
 
+Exemplo de teste de integração:
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/cars/useCases/createCategory/CreateCategoryController.spec.ts
 
-
-
+no package.json alterar o script test conforme abaixo:
+https://github.com/ga-almeida/rentalx/blob/main/package.json
 
 
 
