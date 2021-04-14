@@ -439,7 +439,8 @@ https://github.com/ga-almeida/rentalx/blob/main/src/%40types/express/index.d.ts
 https://github.com/ga-almeida/ignite-template-database-queries
 
 -----------------JEST PARA TESTES----------------------------------------------
-yarn add jest @types/jest -D
+yarn add jest
+yarn add @types/jest -D
 yarn add ts-jest -D
 yarn jest --init
 
@@ -475,7 +476,8 @@ https://github.com/ga-almeida/rentalx/blob/main/jest.config.ts
 
 
 ---------------TESTES DE INTEGRAÇÃO (NECESSÁRIO CONFIGURAR O JEST ANTES)-------------------------------------
-yarn add supertest @types/supertest -D
+yarn add supertest
+yarn add @types/supertest -D
 
 Duplicar o arquivo que sobe o servidor para poder utilizar nos tests, e remover o listen desse arquivo cópia para não subir o servidor. Exemplo, duplicar o server.ts para um arquivo chamado app.rs e exportar a variavel de inicialização.
 https://github.com/ga-almeida/rentalx/blob/main/src/shared/infra/http/app.ts
@@ -488,6 +490,20 @@ https://github.com/ga-almeida/rentalx/blob/main/src/modules/cars/useCases/create
 no package.json alterar o script test conforme abaixo:
 https://github.com/ga-almeida/rentalx/blob/main/package.json
 
+-------------------------------------ENVIADO DE EMAIL COM ETHEREAL----------------------------------------
+
+yarn add nodemailer
+yarn add @types/nodemailer -D
+yarn add handlebars
+
+Modelo para template utlizando handlebars.
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/views/emails/forgotPassword.hbs
+
+Modelo para envio de email generico.
+https://github.com/ga-almeida/rentalx/blob/main/src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts
+
+Utilizando no service o envio de e-mail.
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/useCases/sendForgotPasswordMail/SendForgotPasswordMailUseCase.ts
 
 
 
