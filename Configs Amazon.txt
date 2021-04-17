@@ -1,0 +1,19 @@
+----------------CRIAR USUÁRIO PARA UTILZIAR OS SERVICOS DA AMAZON--------------------------------
+
+Pesquisar no campo de busca por IAM e clicar nessa opção.
+
+Clicar em "Usuário" no canto inferior esquerdo.
+
+Clicar no botão "Adicionar usuário".
+
+Colocar o nome do usuário, exemplo "gabriel-s3" e marcar o checkbox para ter "acesso programático".
+
+Escolher opção "Anexar politicas existentes de forma direta".
+
+Escolher qual tipo de permissão seu usuário deve ter, exemplo "AmazonS3FullAcess", onde dou permissão para meu usuário para realizar qualquer operação no s3.
+
+Clicar no botão "Próximo" e "Próximo" novamente.
+
+Clicar no botão "Criar usuário".
+
+Salvar o ID da chave de acesso e o ID da chave secreta logo após a criação, pois se não salvar, tem que gerar uma nova chave de acesso.

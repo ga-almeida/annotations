@@ -506,6 +506,42 @@ Utilizando no service o envio de e-mail.
 https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/useCases/sendForgotPasswordMail/SendForgotPasswordMailUseCase.ts
 
 
+-----------------------------AMAZON S3----------------------------------------
+
+Buscar pelo serviço "S3" no site da aws.
+
+Clicar no botão "Criar Bucket".
+
+Escolher um nome para o bucket, exemplo "ga-almeida-s3-rentx". (Esse nome é único em toda a amazon).
+
+Escolher a região, pode ser qualquer uma.
+
+Desmarcar a opção de bloquear para acesso público, e marcar para reconhecer essa ação logo abaixo.
+
+Clicar em "Criar bucket".
+
+yarn add aws-sdk
+
+Definir duas variaveis de ambiente. (Essas váriaveis devem ser preenchidas com os valores que foram gerados no momento da criação do usuário).
+AWS_ACCESS_KEY_ID e AWS_SECRET_ACCESS_KEY
+
+Definir duas variáveis de ambiente com o configurações do bucket. (Opcional).
+AWS_BUCKET e AWS_BUCKET_REGION
+
+yarn add mime
+yarn add @types/mime -D
+
+OBS: Caso o projeto não consiga ler as variaveis de ambiente instalar a biblioteca "dotenv", e passa o import no arquvio de configuração do servidor.
+https://github.com/ga-almeida/rentalx/blob/main/src/shared/infra/http/app.ts
+
+Implementação dos métodos de save e delete do S3.
+https://github.com/ga-almeida/rentalx/blob/main/src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts
+
+Utilizando no service.
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/useCases/updatedUserAvatar/UpdateUserAvatarUseCase.ts
+
+
+
 
 
 
