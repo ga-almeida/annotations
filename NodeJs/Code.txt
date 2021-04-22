@@ -508,6 +508,8 @@ https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/useCases/se
 
 -----------------------------AMAZON S3----------------------------------------
 
+Dar permissão do S3FullAccess.
+
 Buscar pelo serviço "S3" no site da aws.
 
 Clicar no botão "Criar Bucket".
@@ -541,24 +543,71 @@ Utilizando no service.
 https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/useCases/updatedUserAvatar/UpdateUserAvatarUseCase.ts
 
 
+--------------------AIDICIONAR ALGUMA PROPRIEDADE A ENTIDADE USANDO CLASS TRANSFORMER------------------------------
+
+yarn add class-transformer
 
 
+Utilizar o decorator @Exposed para adicionar a entidade a variavel
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/infra/typeorm/entities/User.ts
+
+Recuperar a variavel adicionada.
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/useCases/profileUser/ProfileUserController.ts
+
+Mapper.
+https://github.com/ga-almeida/rentalx/blob/main/src/modules/accounts/mappers/UserMap.ts
 
 
+--------------AMZON SES--------------------------
+Buscar pelo serviço "SES" no site da aws.
 
+Escolher a região que quer utilizar.
 
+Clicar em "domains".
 
+Clicar em "verify a new Domain", e preencher o dominio que você tem e clciar em "verify".
 
+Clicar em "Email adress", e verificar o email.
 
+Clicar no dominio configurado, e criar um registro no dominio com o TXTNAME E TXTVALUE.
 
+Dar permissões para o usuário IAM do AmazonSESFullAccess.
 
+implementacao.
+https://github.com/ga-almeida/rentalx/blob/main/src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts
 
+Caso utilize o handlebars para template de email, deve colocar dentro de tags html o conteúdo.
 
+---------------------AMAZON EC2---------------------------
 
+Buscar pelo serviço "EC2" no site da aws.
 
+No painel do lado esquerdo clicar em "instâncias".
 
+Clicar em "executar instância".
 
+Marcar opção "Somente nivel gratuito".
 
+Selecionar a opção "Ubunto server", com 64 bits (x86).
 
+Selecionar a opção "qualificado para o nivel gratuito", e clicar em "próximo: configure os detalhes da instancia".
 
+Deixar as configurações como vem por padrão, e clicar em "próximo: adicionar armazenamento".
 
+Deixar as configurações como vem por padrão, e clicar em "próximo: adicionar tags".
+
+Deixar as configurações como vem por padrão, e clicar em "próximo: configure o security group".
+
+Deixar o type como "SSH", protocolo "TCP", Port range "22", Source "Custom", permite quais ips podem acessar a máquina (deixar como 0.0.0.0/0, permite que qualquer ip possa acessar). Clicar em "verificar e ativar".
+
+Clicar em "executar". Caso não tenha um par de chaves, selecionar a opção "Criar um novo par de chaves", e colocar o nome do par de chaves.
+
+Fazer download do arquivo pain, pra dar acesso para permitir acessar a instancia. Clicar em "executar instancias". Clicar em "exibir instancias".
+
+No painel, clicar em "conectar", escolher "Cliente SSH".
+
+Abrir o terminal. E ir para a pasta onde foi feito o download do arquivo pain.
+
+Executar o comando "chmod 400 nome_do_arquivo_pain.extensão".
+
+Executar o comando "ssh -i nome_do_arquivo_pain.extensão ....resto". O ...resto seria o que aparece no painel quando selecionamos a opção "Cliente SSH".
