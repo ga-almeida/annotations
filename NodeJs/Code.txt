@@ -611,3 +611,47 @@ Abrir o terminal. E ir para a pasta onde foi feito o download do arquivo pain.
 Executar o comando "chmod 400 nome_do_arquivo_pain.extensão".
 
 Executar o comando "ssh -i nome_do_arquivo_pain.extensão ....resto". O ...resto seria o que aparece no painel quando selecionamos a opção "Cliente SSH".
+
+Criar um usuário "sudo adduser nome_do_usuario". Colocar uma senha. (Lembrar dessa senha para utilizar depois). Clicar enter em todas opções e clicar o Y pra aceitar as configurações.
+
+Execute o comando para dar permissões root ao usuário "sudo usermod -aG sudo nome_do_usuario".
+
+Execute o comando para utilizar o usuário criado "sudo su - nome_do_usuario".
+
+Criar uma pasta para que nossa instancia tenha acesso "mkdir .ssh".
+
+Alterar a permissão da pasta .ssh para somente o proprietário pode manipular com o comando "chmod 700 .ssh/".
+
+Entrar na pasta .ssh "cd .ssh/" e criar o arquivo de autorização "touch authorized_keys".
+
+Abrir o arquivo com VIM através do comando "vi authorized_keys".
+
+Abrir um novo terminal e digitar "ssh-keygen" e ir pressionando o botão "ENTER" até gerar a key (Fazer isso no Linux ou Mac).
+
+Para pegar essa chave gerada, execute o comando "cat ~/.ssh/id_rsa.pub". Copiar a chave.
+
+Voltar para o terminal na isntancia da AWS, apertar a tecla "i" para conseguir inserir algo dentro do arquivo que abrimos, e colar a chave com o atalho ctrl+V e para salvar use o atalho ctrl+C e digite ":wq!" e pressione o botão "ENTER".
+
+Dar permissão para o arquivo authorized_keys "chmod 600 authorized_keys".
+
+Agora pode ser acessado a máquina ec2 com usuário que criamos. Abra um novo terminal e execute o comando "ssh nome_do_usuario_criado@IP_da_instancia". (A partir de agora utilizar esse usuário não precisando configurar um novo usuário para poder acessar a máquina).
+
+Importante atualizar os pacotes instalados, executando o comando "sudo apt update".
+
+Instalar tudo o que é necessário para rodar o projeto, como exemplo será utilizado um projeto em NodeJs.
+
+Seguir as instruções de intalação do Node no Ubunto no site oficial.
+
+Seguir as instruções de instalação do Docker e Docker-Compose no Ubunto no site oficial. (Caso esteja usando Docker no projeto).
+
+Seguir as instruções de intalação do Yarn no Ubunto no site oficial. (Caso esteja usando Yarn no projeto).
+
+Feito as instalção necessárias para rodar o projeto, antes de colocarmos na instancia EC2 é necessario que ele esteja em JavaScript. Dessa forma se o projeto estiver em TypeScript terá que ser convertido para JavaScript.
+
+Instalar no projeto as seguintes bibliotecas "yarn add @babel/cli @babel/core @babel/node @babel/plugin-proposal-class-properties @babel/plugin-proposal-decorators @babel/preset-env @babel/preset-typescript babel-plugin-module-resolver babel-plugin-transform-typescript-metadata -D".
+
+Criar na raiz do projeto o arquivo com o nome "babel.config.js" com as configurações abaixo.
+https://github.com/ga-almeida/rentalx/blob/main/babel.config.js
+
+Definir um script chamado "build" dizendo para converter tudo que está na pasta "src" que são somente os arquivos que queremos converter.
+https://github.com/ga-almeida/rentalx/blob/main/tsconfig.json
