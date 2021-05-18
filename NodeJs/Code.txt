@@ -655,3 +655,90 @@ https://github.com/ga-almeida/rentalx/blob/main/babel.config.js
 
 Definir um script chamado "build" dizendo para converter tudo que está na pasta "src" que são somente os arquivos que queremos converter.
 https://github.com/ga-almeida/rentalx/blob/main/tsconfig.json
+
+Feito isso, entrar com o usuário na instância EC2 e gerar um chave ssh com o comando "ssh-keygen" e ir pressionando o botão "ENTER" até gerar a key (Fazer isso no Linux ou Mac).
+
+Para pegar essa chave gerada, execute o comando "cat ~/.ssh/id_rsa.pub". Copiar a chave.
+
+Adicionar essa chave no GitHub para que a máquina EC2 possa fazer um git clone do projeto.
+
+Na instancia EC2 criar um diretório onde será feito o download do projeto "mkdir app", depois "cd app".
+
+Execute o comando "git clone ssh_do_projeto_no_git_hub".
+
+Entrar dentro da pasta do projeto e executar o comando "yarn" para instalar as bibliotecas do projeto.
+
+Depois, executar o comando "yarn build" para gerar nosso projeto em javaScript.
+
+Alterar o nome de arquvios example como o "ormconfig.example.json" para "ormconfig.json" para nao quebrar as configurações da aplicação com o comando "cp ormconfig.example.json ormconfig.json".
+
+Editar o arquivo para apontar para para a pasta "dist" e alterar as extensões de "ts" para "js" com o comando "vim ormconfig.json". E para salvar use o atalho ctrl+C e digite ":wq!" e pressione o botão "ENTER".
+
+Em produção, é interessante não expor portas padrões como de container,banco de dados entre outros serviços.
+
+Logo após, executar o comando para subir o servidor dentro da pasta dist que no exemplo seria "node dist/shared/infra/http/server.js".
+
+Criar um ssh para o github actions e dar um nome no momento da criação.
+
+Copiar a chave (nome_da_chave.pub) e referenciar no authorized_keys dentro da nossa instancia EC2. (utilizar o comando cat >> authorized_keys, vai abrir para adicionarmos algo dentro do arquivo. Cole a chave, e use o atalho ctrl+D).
+
+Copiar a chave (nome_da_chave) ir dentro de "settings" do repositório e clicar em "secrets".
+
+Clicar em "new repository secret" dar o nome de SSH_KEY e o valor que foi copiado.
+
+Adicionar uma key com o nome SSH_HOST e o valor é o IP da instancia EC2.
+
+Adicionar uma key com o nome SSH_USER e o valor é o app (que é o usuário que criamos para se logar na instancia EC2).
+
+Adicionar uma key com o nome SSH_PORT e o valor é o 22 (que foi o que definimos na criação da instancia EC2).
+
+Ir no repositŕoio no github, clicar em "Actions" e clicar em "set up a workflow yourself".
+
+Utilizar essa configuração como exemplo:
+name: CI
+
+on:
+  push:
+    # Qual brnach será feito o pipeline quando houver push
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    # Em qual SO vai ser feito o pipeline
+    runs-on: ubuntu-latest
+
+    # Passo a passo
+    steps:
+      # Pega o código mais atual do github
+      - uses: actions/checkout@v2
+      
+      # Setar qual Node está utilizando no projeto
+      - name: Setup NodeJs
+        uses: actions/setup-node@v2
+        with: 
+          node-version: 14.x
+      
+      # Instalar as dependencias
+      - name: Install Dependencies
+        run: yarn
+
+      # Build do projeto
+      - name: Build
+        run: yarn build
+        
+      # Utilizar o SCP que copia arquivos SSH
+      - name: Build
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          # Ignorar a node_modules
+          source: "., !node_modules"
+          # Onde enviar todo o projeto
+          target: "~/app/api-rentx"
+
+Clicar em start commit, dar um nome qualquer para a execução do pipeline.
