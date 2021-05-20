@@ -624,7 +624,7 @@ Alterar a permissão da pasta .ssh para somente o proprietário pode manipular c
 
 Entrar na pasta .ssh "cd .ssh/" e criar o arquivo de autorização "touch authorized_keys".
 
-Abrir o arquivo com VIM através do comando "vi authorized_keys".
+Abrir o arquivo com VIM através do comando "vim authorized_keys".
 
 Abrir um novo terminal e digitar "ssh-keygen" e ir pressionando o botão "ENTER" até gerar a key (Fazer isso no Linux ou Mac).
 
@@ -742,3 +742,39 @@ jobs:
           target: "~/app/api-rentx"
 
 Clicar em start commit, dar um nome qualquer para a execução do pipeline.
+
+Na instancia EC2 é bom configurar um proxy reverso. No exemplo será utilizado o nginx.
+
+Na instancia EC2 instalar nginx "sudo apt install nginx".
+
+Verificar na aws a sua instancia qual o grupo de segurança. Clicar em "Instancias", selecionar sua isntancia, e ver no final do link onde tem o texto "Grupos de segurança" o nome do grupo.
+
+Clicar em "Security Groups" qeu fica em "Rede e segurança". Selecionar o grupo, clicar em Regras de entrada, clicar em "Editar regras de entrada". Adicionar o tipo "http", otigem pode ser "qualquer lugar" e adicionar uma da mesma forma mas para o "https".
+
+Acessar na instancia EC2 o caminho a seguir "cd /etc/nginx/sites-available".
+
+Criar um arquivo de configuração nginx "sudo touch nome_do_arquivo", logo depois abrir com o vim para editar o arquivo "sudo vim nome_do_arquivo". Apertar a tecla "i" para conseguir inserir algo dentro do arquivo que abrimos, assim que finalizar de configurar o arquivo digite ":wq!" e pressione o botão "ENTER" para salvar.
+
+Guia para configurar nginx: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-20-04-pt
+
+server {
+    listen 80 default_server;
+    listen [::] default_server;
+    
+    location / {
+        proxy_pass http://localhost:3333;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }	
+}
+
+Agora que foi configurado o arquivo, é preciso criar um link simbólico para esse arquivo. Entrar na pasta de sites-enabled "cd /etc/nginx/sites-enabled".
+
+Digitar o comando para criar um link simbólico "sudo ln -s /etc/nginx/sites-available/nome_do_arquivo nome_do_arquivo". 
+
+Agora é preciso remover o arquivo default e o link simbólico default, executar os seguintes comandos, "sudo rm -rf default", "cd /etc/nginx/sites-available" e depois "sudo rm -rf default".
+
+Agora é só restartar o nginx "sudo service nginx restart" (Caso de bad gateway verificar se o servidor está rodando). 
