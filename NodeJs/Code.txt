@@ -798,3 +798,26 @@ Utilizar o PM2 (gerenciador de processos node) para startar a aplicação.
 Na instancia EC2 executar o comando "sudo yarn global add pm2".
 
 Executar o comando "pm2 start dist/shared/infra/http/server.js --name nome_dado_ao_servico" isso irá criar um serviço. O comando "pm2 stop nome_dado_ao_servico" ira parar o serviço. O comando "pm2 start nome_dado_ao_servico" irá executar o serviço que foi salvo.
+
+Agora falta conseguir utilizar o dominio pra fazer acesso a API e adcionar o protoclo https.
+
+No painel da aws procurar pelo route 53 (Serviço de gerenciamento de DNS). Se não tiver nada registrar clicar em "zonas hospedadas" e depois clicar em "criar zona hospedada", colocar o dominio no campo "nome do dominio", deixar como zona hospedada publica e depois clicar em "criar zona hospedada".
+
+Acessar a zona que foi criada, por padrão irão ser criados o NS e o SOA. Clicar em "criar registro", no campo "nome do registro" colocar o subdominio que você quer utilizar. O tipo de registro deixar como "A" e em "valor" colocar o IP da instancia EC2.
+
+Ir até a pltaforma que você faz a configuração de DNS e criar um subdominio com as mesmas informações que foram usadas para crira um registro.
+
+Para verificar se está tudo okay com o DNS configurado, pesquisar no site "whatsmydns.net".
+
+Utilizar o certbot para configurar o certifica SSL.
+
+No site certbot colocar no primeiro campo Nginx on Ubunto e daí sera mostrado todo o passo a passo na instancia EC2 para liberar o certificado.
+
+Verificar se o arquivo nginx foram feitas as altereções depois do passo a passo. E se estiver tudo certo, fazer o restar com o comando "sudo service nginx restart".
+
+Dar a permissão para a aplicação ser acessada por qualquer outra aplicação através do CORS.
+
+Instalar a biblioteca CORS no projeto "yarn add cors" e "yarn add @types/cors -D".
+
+No arquivo responsavel por subir o servidor antes de chamar as rotas, habilitar o cors.
+https://github.com/ga-almeida/rentalx/blob/main/src/shared/infra/http/app.ts
