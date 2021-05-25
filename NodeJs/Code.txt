@@ -740,6 +740,20 @@ jobs:
           source: "., !node_modules"
           # Onde enviar todo o projeto
           target: "~/app/api-rentx"
+          
+      # Utilizar o ssh actions
+      - name: Update API
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ~/app/api-rentx
+            yarn
+            ./node_modules/.bin/typeorm migration:run
+            pm2 restart rentx_api
 
 Clicar em start commit, dar um nome qualquer para a execução do pipeline.
 
@@ -777,4 +791,10 @@ Digitar o comando para criar um link simbólico "sudo ln -s /etc/nginx/sites-ava
 
 Agora é preciso remover o arquivo default e o link simbólico default, executar os seguintes comandos, "sudo rm -rf default", "cd /etc/nginx/sites-available" e depois "sudo rm -rf default".
 
-Agora é só restartar o nginx "sudo service nginx restart" (Caso de bad gateway verificar se o servidor está rodando). 
+Agora é só restartar o nginx "sudo service nginx restart" (Caso de bad gateway verificar se o servidor está rodando).
+
+Utilizar o PM2 (gerenciador de processos node) para startar a aplicação.
+
+Na instancia EC2 executar o comando "sudo yarn global add pm2".
+
+Executar o comando "pm2 start dist/shared/infra/http/server.js --name nome_dado_ao_servico" isso irá criar um serviço. O comando "pm2 stop nome_dado_ao_servico" ira parar o serviço. O comando "pm2 start nome_dado_ao_servico" irá executar o serviço que foi salvo.
