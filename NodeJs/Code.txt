@@ -821,3 +821,35 @@ Instalar a biblioteca CORS no projeto "yarn add cors" e "yarn add @types/cors -D
 
 No arquivo responsavel por subir o servidor antes de chamar as rotas, habilitar o cors.
 https://github.com/ga-almeida/rentalx/blob/main/src/shared/infra/http/app.ts
+
+---------------------------SEGURANÇA DO APP com RATE LIMITER-------------------------------------
+
+Configurar o redis no projeto (no exemplo está sendo utilizado docker-compose).
+github
+
+yarn add redis
+yarn add @types/redis -D
+yarn add rate-limiter-flexible
+
+Exemplo do middleware.
+https://github.com/ga-almeida/rentalx/blob/main/src/shared/infra/http/middlewares/rateLimiter.ts
+
+Utilizar no arquivo que sobe o servidor para adicionar o middleware criado, deve ser adicionado antes das rotas.
+https://github.com/ga-almeida/rentalx/blob/main/src/shared/infra/http/app.ts
+
+--------------------------OBSERVAR ERROS DA APLICAÇÃO COM SENTRY---------------------------------------------
+
+Acessar sentry.io caso não tenha, realziar o cadastro.
+
+Clicar em "Projects" e depois em "Create project" clicar em "Express" (que no caso é o exemplo desse projeto).
+
+Selecionar a opção "Alert me on every new issue".
+
+Em "Project name" colocar qualquer nome (Pode ser o nome do projeto).
+
+E defino qual o time no campo "Team".
+
+E logo após isso serpa mostrado algumas configurações que devem ser feitas no projeto.
+
+As configurações do sentry no projeto geralmente iram ficar no arquivo que sobe o servidor, importante fazer essas configurações antes das rotas.
+https://github.com/ga-almeida/rentalx/blob/main/src/shared/infra/http/app.ts
