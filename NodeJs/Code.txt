@@ -853,3 +853,21 @@ E logo após isso serpa mostrado algumas configurações que devem ser feitas no
 
 As configurações do sentry no projeto geralmente iram ficar no arquivo que sobe o servidor, importante fazer essas configurações antes das rotas.
 https://github.com/ga-almeida/rentalx/blob/main/src/shared/infra/http/app.ts
+
+----------------------------UTILIZAR SERVERLESS------------------------------------------------
+
+Instalação
+https://www.serverless.com/framework/docs/getting-started/
+
+Exemplos
+https://www.serverless.com/examples/
+
+Criar projeto rodando o comando "serverless create --template nome_do_template --path nome_do_projeto".
+
+Instalar alguns plugins.
+yarn add serverless-offline -D
+
+Remover no package json o "main", "test" do script, "engines", "author" e "license". Criar um script chamado "dev" com o valor "serverless offline"
+
+serverless.yml é o arquivo de configuração do projeto.
+https://github.com/ga-almeida/ignitecertificate/blob/main/serverless.yml
