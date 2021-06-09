@@ -871,3 +871,20 @@ Remover no package json o "main", "test" do script, "engines", "author" e "licen
 
 serverless.yml é o arquivo de configuração do projeto.
 https://github.com/ga-almeida/ignitecertificate/blob/main/serverless.yml
+
+Criar um usuário pelo console aws e dar o acesso de administratorAccess. Copiar ID da chave de acesso e a Chave secreta.
+
+Executar o comando para adicionar as credencias ao projeto "serverless config credentials --provider aws --key=CHAVE_DE_ACESSO --secret CHAVE_SECRETA -o". Utilizar -o no final do comando caso ja tenha credentials salva, para verificar ir no diretoria inicial pesquisar pela pasta .aws e verficar se tem um arquivo credentials.
+
+Configurando o banco DynamoDB da amazon.
+yarn add serverless-dynamodb-local -D
+serverless dynamodb install
+
+Configurações dynamodb.
+https://github.com/ga-almeida/ignitecertificate/blob/main/serverless.yml
+ghttps://github.com/ga-almeida/ignitecertificate/blob/main/src/utils/dynamodbCliente.ts
+
+Usar esse comando depois de estar configurado o dynamodb "serverless dynamodb start". (Opcional criar um script).
+
+Exemplo de function.
+https://github.com/ga-almeida/ignitecertificate/blob/main/src/functions/generateCertificate.ts
