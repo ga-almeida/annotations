@@ -888,3 +888,7 @@ Usar esse comando depois de estar configurado o dynamodb "serverless dynamodb st
 
 Exemplo de function.
 https://github.com/ga-almeida/ignitecertificate/blob/main/src/functions/generateCertificate.ts
+
+Caso precise empacote alguma pasta externa como por exemplo um pasta de templates seguir as intruções abaixo:
+yarn add copy-webpack-plugin -D
+Configuração: https://github.com/ga-almeida/ignitecertificate/blob/main/webpack.config.js
