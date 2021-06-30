@@ -1,0 +1,30 @@
+******CRIAR TEMPLATE PR*********
+Criar um pasta no projeto chamado ".github". E criar um arquivo chamado "PULL_REQUEST_TEMPLATE.md".
+
+E colocar nesse arquivo o template de PR que desejar.
+
+*****PROTEGENDO BRANCH PARA CODE REVIEW*******
+Ir em "Settings" do projeto. Clicar em "Branchs", selecionar alguma branch e clicar em editar para alterar algumas configurações.
+
+Clicando na opção "Require pull request reviews before mergind", faz com que todo PR seja obrigatório o code review.
+
+É possivel selecionar quantas pessoas é necessaria de approves para mergear o PR.
+
+Opcional: clicar em "Require review from code owners", vai permitir que seja aplicado a configuração de code owners.
+
+Clicar em "save changes".
+
+
+********CODE OWNERS**********
+Criar um arquivo com o nome CODEOWNERS na pasta ".github".
+
+Nesse arquivo definir extensões, arquaivos e etc para quem deve ser o dono desse código.
+
+Exemplo:
+*.js @ga-almeida
+.github/ @ga-almeida
+
+Esse exemplo o usuário ga-almeida será responsavel por todo código que ter a extensão *.js e tudo que estiver dentro da pasta ".github/". 
+
+*********EXTENSÃO PARA AJUDAR NO PROCESSO DE CODE REVIEW NO VSCODE**************
+Extensão GitHub Pull Requests and Issues.
