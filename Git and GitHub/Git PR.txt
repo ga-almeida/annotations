@@ -28,3 +28,7 @@ Esse exemplo o usuário ga-almeida será responsavel por todo código que ter a 
 
 *********EXTENSÃO PARA AJUDAR NO PROCESSO DE CODE REVIEW NO VSCODE**************
 Extensão GitHub Pull Requests and Issues.
+
+******SEMANTICAL VERSIONING E CONVENTIONAL COMMITS*****************
+https://semver.org/lang/pt-BR/
+https://www.conventionalcommits.org/pt-br/v1.0.0/
