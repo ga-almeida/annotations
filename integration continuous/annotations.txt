@@ -1,0 +1,8 @@
+********Principais Processos*****************
+Execução de testes
+Linter
+Verificações de qualidade de código
+Verificações de segurança
+Geração de artefatos prontos para o processo de deploy
+Identificação da próxima versão a ser gerada no software
+Geração de tags e releases

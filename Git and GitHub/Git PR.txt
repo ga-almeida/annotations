@@ -32,3 +32,11 @@ Extensão GitHub Pull Requests and Issues.
 ******SEMANTICAL VERSIONING E CONVENTIONAL COMMITS*****************
 https://semver.org/lang/pt-BR/
 https://www.conventionalcommits.org/pt-br/v1.0.0/
+
+Extensão VSCODE: Conventional Commits
+
+https://commitlint.js.org/#/
+
+https://commitsar.tech/docs/
+
+https://github.com/commitizen/cz-cli
