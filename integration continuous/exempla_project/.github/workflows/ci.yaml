@@ -1,0 +1,21 @@
+# Nome do workdlow
+name: ci-golank-workflow
+
+# O processo irá inciar toda vez que acontecer um push direto para o repositório
+on: [push]
+
+# Jobs seria o Passo a Passo de cada processo
+jobs:
+  # Primeiro processo
+  check-application:
+    # Será realizado em um imagem ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      # Pega os dados que acabam de ser feito push e baixar na máquina ubuntu
+      - uses: actions/checkout@v2
+      # Prepara a máquina com um setup para rodar golang
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
+      - run: go test
+      - run: go run math.go
