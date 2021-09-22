@@ -6,3 +6,34 @@ Verificações de segurança
 Geração de artefatos prontos para o processo de deploy
 Identificação da próxima versão a ser gerada no software
 Geração de tags e releases
+
+****************Criando Workflow*****************88
+Criar na raiz do seu projeto uma pasta chamada ".github/workflows" e criar um arquivo yaml, exemplo "ci.yaml".
+
+Exemplo de arquivo:
+https://github.com/ga-almeida/go-project-ci/blob/main/.github/workflows/ci.yaml
+
+Proteger a branch principal que irá receber o merge dos PR, exemplo branch develop.
+
+Clicar em settings, clicar em branchs, e mudar o branch principal para develop e clicar em update.
+
+Clicar em add rule para criar algumas regras, selecionar a branch develop, e selecionar a opção "Require status checks to pass before merging", e a sub opção "Require branches to be up to date before merging", e selecionar quais os jobs necessários para ele ter permissão para o github permitir o merge.
+
+Selecionar a opção "Restrict who can push to matching branches", para ninguem comitar direto nessa branch. Seleiconar a opção "Include adminstrators", e selecionar a opção "Require pull request reviews before merging" para obrigar que toda PR seja feito o code review antes do merge.
+
+Clicar em Create.
+
+E fazer esses mesmo passos para a branch main/master.
+
+**********Criando Dockerfile*****************************
+https://github.com/marketplace/actions/build-and-push-docker-images
+
+Para definir variaves de ambiente do dockerhub, clicar em "settings" no repositório, clicar em "secrets", clicar em "new repository secret".
+
+Defnir as variaveis DOCKERHUB_USERNAME com o valor do seu usuário.
+
+E DOCKERHUB_TOKEN é necessário gerar o token no dockerhub, fazendo o login, nas opções do seu usuário clicar em "Account settings", clicar em "Security", clicar em "New Access Token", dar um nome e clicar em criar e copiar o token gerado.
+
+***********Utilizando Sonarqube*********************
+https://docs.sonarqube.org/latest/setup/get-started-2-minutes/
+https://sonarcloud.io/

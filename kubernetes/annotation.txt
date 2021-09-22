@@ -1,0 +1,14 @@
+*********************Infos k8s*****************************
+Kubernetes é disponibilizado através de um conjunto de APIs.
+Normalmente acessamos a API usando a CLI: kubectl.
+
+Cluster: Conjunto de máquinas (Nodes).
+Cada máquina possui uma quantidade de CPU e memoria.
+
+Pods: Unidade que contém os containers provisionados.
+Uma pod representa um processo rodando no cluster.
+OBS: Normalmente é utilizado um container para um pod, porem nao é regra.
+
+Deployment: Tem o objetivo de provisionar as PODs.
+
+*********************Instalando Kind*****************************
