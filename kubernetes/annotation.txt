@@ -18,7 +18,7 @@ Instalação:
 https://kind.sigs.k8s.io/docs/user/quick-start/
 
 Para criar um cluster de forma padrão:
-kind create kluster
+kind create cluster
 
 Para se comunicar com o cluster que foi criado pelo kind utilizar o comando:
 kubectl cluster-info --context kind-NOME_DO_CLUSTER
@@ -37,5 +37,11 @@ https://github.com/ga-almeida/annotations/blob/master/kubernetes/kind.yaml
 
 *********************Comandos kubernetes*****************************
 
-Tras todos os Nodes do cluster na máquina:
+Tras todos os Nodes do cluster que está no contexto atual:
 kubectl get nodes
+
+Lista algumas opções de outros cluster que eu posso ter:
+kubectl config get-clusters
+
+Para trocar de cluster:
+kubectl config use-context NOME_DO_CLUSTER
