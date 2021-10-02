@@ -1,4 +1,5 @@
 *********************Infos k8s*****************************
+
 Kubernetes é disponibilizado através de um conjunto de APIs.
 Normalmente acessamos a API usando a CLI: kubectl.
 
@@ -11,5 +12,15 @@ OBS: Normalmente é utilizado um container para um pod, porem nao é regra.
 
 Deployment: Tem o objetivo de provisionar as PODs.
 
-*********************Instalando Kind*****************************
-https://kind.sigs.k8s.io/docs/user/quick-start/
+*********************Kind*****************************
+
+Instalação: https://kind.sigs.k8s.io/docs/user/quick-start/
+
+Para criar um cluster: kind create kluster
+
+Para se comunicar com o cluster que foi criado pelo kind utilizar o comando: kubectl cluster-info --context kind-kind
+
+*********************Comandos kubernetes*****************************
+
+Tras todos os Nodes (cluster) na máquina:
+kubectl get nodes
