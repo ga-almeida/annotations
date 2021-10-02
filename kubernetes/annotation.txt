@@ -14,13 +14,28 @@ Deployment: Tem o objetivo de provisionar as PODs.
 
 *********************Kind*****************************
 
-Instalação: https://kind.sigs.k8s.io/docs/user/quick-start/
+Instalação:
+https://kind.sigs.k8s.io/docs/user/quick-start/
 
-Para criar um cluster: kind create kluster
+Para criar um cluster de forma padrão:
+kind create kluster
 
-Para se comunicar com o cluster que foi criado pelo kind utilizar o comando: kubectl cluster-info --context kind-kind
+Para se comunicar com o cluster que foi criado pelo kind utilizar o comando:
+kubectl cluster-info --context kind-NOME_DO_CLUSTER
+
+Tras todos os Nodes (cluster) na máquina que foram criados pelo kind:
+kind get clusters
+
+Deletar algum cluster criado pelo kind:
+kind delete clusters NOME_DO_CLUSTER
+
+Criar cluster utlizando algum arquivo yaml pronto:
+kind create cluster --config=DIRETORIO_DO_ARQUIVO.YAML --name=NOME_DO_CLUSTER
+
+Arquivo de exemplo:
+github
 
 *********************Comandos kubernetes*****************************
 
-Tras todos os Nodes (cluster) na máquina:
+Tras todos os Nodes do cluster na máquina:
 kubectl get nodes
