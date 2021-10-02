@@ -33,7 +33,7 @@ Criar cluster utlizando algum arquivo yaml pronto:
 kind create cluster --config=DIRETORIO_DO_ARQUIVO.YAML --name=NOME_DO_CLUSTER
 
 Arquivo de exemplo:
-github
+https://github.com/ga-almeida/annotations/blob/master/kubernetes/kind.yaml
 
 *********************Comandos kubernetes*****************************
 
