@@ -13,3 +13,14 @@ sudo apt install openjdk-16-jdk
 
 Verifique se o JDK está instalado verificando a versão do javac, o compilador do Java:
 javac -version
+
+Configurar JAVA_HOME:
+    Verificar caminho: sudo update-alternatives --config java
+    Copie o caminho do java
+    Edite o arquivo .bashrc: sudo gedit ~/.bashrc
+    Copie o código abaixo no final do arquivo. Salve o arquivo.
+    Abra um novo terminal e teste: echo $JAVA_HOME
+
+JAVA_HOME=CAMINHO_COPIADO_apagar_no_final_/BIN/JAVA
+export JAVA_HOME
+export PATH=$PATH:$JAVA_HOME
