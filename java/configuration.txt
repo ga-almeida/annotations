@@ -1,0 +1,15 @@
+***************Instalação Java**********************
+Atualização dos pacotes
+sudo apt update
+
+Instala a versão 16
+sudo apt install openjdk-16-jre
+
+Verifica se a versão correta foi instalada
+java -version
+
+Instala a JDK
+sudo apt install openjdk-16-jdk
+
+Verifique se o JDK está instalado verificando a versão do javac, o compilador do Java:
+javac -version
