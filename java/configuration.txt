@@ -24,3 +24,9 @@ Configurar JAVA_HOME:
 JAVA_HOME=CAMINHO_COPIADO_apagar_no_final_/BIN/JAVA
 export JAVA_HOME
 export PATH=$PATH:$JAVA_HOME
+
+***************Configurando um projeto Java com Spring Initializr**********************
+https://start.spring.io/
+
+Iniciar um projeto com algumas dependencias iniciais:
+Spring Web, Flyway Migration, Algum banco de dados (Exemplo MySQL Driver) e Spring JPA.
