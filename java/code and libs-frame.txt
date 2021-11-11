@@ -1,0 +1,55 @@
+***************Executor**********************
+
+Serve para melhorar a forma como é feita as requisições. Faz com que ao inves de criar novas threds a cada requisição até aguardar a resposta, ele envia a chamada para um fila dessa forma nao sobrecarregando os recursos do servidor.
+
+classe de configuração:
+https://github.com/ga-almeida/realmeet/blob/main/service/src/main/java/br/com/sw2you/realmeet/config/ExecutorsConfiguration.java
+
+utilizar nos controllers na resposta da chamada:
+https://github.com/ga-almeida/realmeet/blob/main/service/src/main/java/br/com/sw2you/realmeet/controller/RoomController.java#L27
+
+***************Testes com JUNIT**********************
+Utilizar no maven as dependencias de testes.
+https://github.com/ga-almeida/realmeet/blob/main/service/pom.xml
+
+Classe para realizar teste unitário.
+https://github.com/ga-almeida/realmeet/blob/main/service/src/test/java/br/com/sw2you/realmeet/unit/RoomMapperUnit.java
+https://github.com/ga-almeida/realmeet/blob/main/service/src/test/java/br/com/sw2you/realmeet/unit/RoomServiceUnitTest.java
+
+Classe para retornar uma instancia Mapper.
+https://github.com/ga-almeida/realmeet/blob/main/service/src/test/java/br/com/sw2you/realmeet/utils/MapperUtils.java
+
+Classe para defirnir constants de algum objeto.
+https://github.com/ga-almeida/realmeet/blob/main/service/src/test/java/br/com/sw2you/realmeet/utils/MapperUtils.java
+
+Classe para criar um builder com valores pre definidos.
+https://github.com/ga-almeida/realmeet/blob/main/service/src/test/java/br/com/sw2you/realmeet/utils/MapperUtils.java
+
+Classe para servir como base os testes unitarios.
+https://github.com/ga-almeida/realmeet/blob/main/service/src/test/java/br/com/sw2you/realmeet/core/BaseUnitTest.java
+
+Criar um application para testes integrados utilizando o org.containers.
+github
+
+Classe para servir como base para os testes integrados.
+github
+
+Necessario dizer ao spring como obter uma instancia de RestTemplate.
+github
+
+***************Utilizar validações de campos no momento da requisição**********************
+
+Classe responsavel pelo tipo do erro.
+github
+
+Classe responsavel por agrupar todos os erros.
+github
+
+Classe responsavel por validar o objeto se contem erros.
+github
+
+Classe responsavel por disparar a Exeception de erros.
+github
+
+Classe responsavel por conter validacoes de erros genericas.
+github
