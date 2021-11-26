@@ -53,3 +53,17 @@ github
 
 Classe responsavel por conter validacoes de erros genericas.
 github
+
+***************Kafka**********************
+
+Brokers: É um conector que recebe as mensagens dos producers e grava as mensagens em memória, cada brokers gerencia uma lista de tópicos e cada tópico é dividido em diversas partições.
+
+Producer: É quem publica a mensagem em um tópico.
+
+Consumer: É quem recebe as mensagens publicadas.
+
+Topic: São as filas de mensagens e dentro de um tópico pode exitir uma ou mais partições.
+
+Ciclo de mensagem no Kafka: Producer publica mensagem no Broker(s), que envia para os Topics, onde é consumido pelos Consumers que está registrado no topic que recebeu a mensagem, que retorna uma resposta se consumiu ou não a mensagem.
+
+
