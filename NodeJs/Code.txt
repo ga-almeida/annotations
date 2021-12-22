@@ -894,3 +894,33 @@ https://github.com/ga-almeida/ignitecertificate/blob/main/src/functions/generate
 Caso precise empacote alguma pasta externa como por exemplo um pasta de templates seguir as intruções abaixo:
 yarn add copy-webpack-plugin -D
 Configuração: https://github.com/ga-almeida/ignitecertificate/blob/main/webpack.config.js
+
+-----------------PRISMA----------------------------
+yarn add prisma
+
+Para iniciar as configurações iniciais do prisma:
+yarn prisma init
+
+Foi criado um arquivo .env na raiz do projeto com a url do banco de dados. Importante que ja tenha criado o banco de dados antes de utilizar o prisma.
+https://github.com/ga-almeida/prisma-project/blob/main/.example.env
+
+Arquivo schema criado, onde contem todas as configurações do prisma:
+https://github.com/ga-almeida/prisma-project/blob/main/prisma/schema.prisma
+
+É possivel ter um client de banco de dados para o prisma onde você pode utilziar dentro do projeto, rode o comando.
+yarn prisma studio
+
+Para gerar as classes de modelos, rodar o comando:
+yarn prisma generate
+
+Para criar migrations rode o comando:
+yarn prisma migrate dev
+
+Utilizar o prisma para salvar alguma informação:
+github
+
+Utilizar o prisma para buscar uma informação:
+github
+
+Formas de utilizar o prisma:
+github
