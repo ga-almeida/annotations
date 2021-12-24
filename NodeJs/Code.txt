@@ -916,11 +916,8 @@ yarn prisma generate
 Para criar migrations rode o comando:
 yarn prisma migrate dev
 
-Utilizar o prisma para salvar alguma informação:
-github
-
-Utilizar o prisma para buscar uma informação:
-github
-
 Formas de utilizar o prisma:
-github
+https://github.com/ga-almeida/prisma-project/tree/main/src
+
+Mapear o prisma para pegar o banco de dados existente para o projeto.
+yarn prisma db pull
