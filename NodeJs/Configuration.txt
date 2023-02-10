@@ -5,6 +5,10 @@ yarn init -y
 yarn add typescript -D
 
 yarn tsc --init
+
+yarn add -D @types/node
+
+yarn add tsx -D
 --------------------------------------------------------------
 
 Seguir o tutorial nesse link abaixo:
@@ -28,8 +32,9 @@ Colocar no arquivo packeage.json um script conforme o exemplo abaixo:
 
 No arquivo tsconfig habilitar e desabilitar as funcionaldiades abaixo:
 
-"strict": true //comentar essa linha
-"resolveJsonModule": true //essa propriedade permite importar arquivos json
+Arquivo de exemplo para configuração:
+https://github.com/ga-almeida/api-rest-nodejs/blob/main/tsconfig.json
+
 
 ---------------Configurando DEBUG no VSCODE--------------------------------------
 
@@ -43,3 +48,27 @@ Mudar as propriedades abaixo:
 
 "type": "node",
 "request": "attach",
+
+---------------Configurando fastify--------------------------------------
+yarn add fastify
+
+Arquivo de exemplo para configuração do servidor:
+https://github.com/ga-almeida/api-rest-nodejs/blob/main/src/server.ts
+
+---------------Configurando ESLINT--------------------------------------
+preset da rocketseat
+yarn add eslint @rocketseat/eslint-config -D
+
+Configurar arquivo:
+https://github.com/ga-almeida/api-rest-nodejs/blob/main/.eslintrc.json
+
+Instalar extensao no vscode ESLINT
+
+Configurar no settings.json
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true 
+    }
+
+Adicionar um script para o lint no package.json para ajustar todo o projeto:
+"lint": "eslint src -ext .ts --fix"
+https://github.com/ga-almeida/api-rest-nodejs/blob/main/package.json
