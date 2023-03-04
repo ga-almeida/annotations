@@ -77,6 +77,13 @@ https://github.com/ga-almeida/api-rest-nodejs/blob/main/package.json
 knex é um query builder, muito bom para trabalhar com bancos em memoria
 yarn add knex sqlite 3
 
-Arquivo de configuração de conexão ao banco de dados:
+Arquivos de configuração de conexão ao banco de dados:
 https://github.com/ga-almeida/api-rest-nodejs/blob/main/src/database.ts
+https://github.com/ga-almeida/api-rest-nodejs/blob/main/knexfile.ts
+
+Criar um script para o knex entender typescript:
+https://github.com/ga-almeida/api-rest-nodejs/blob/main/package.json#L9
+
+Para criar uma migration basta rodar o comando:
+yarn knex -- migrate:make nome_da_migration
 
