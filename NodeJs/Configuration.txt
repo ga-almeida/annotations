@@ -72,3 +72,11 @@ Configurar no settings.json
 Adicionar um script para o lint no package.json para ajustar todo o projeto:
 "lint": "eslint src -ext .ts --fix"
 https://github.com/ga-almeida/api-rest-nodejs/blob/main/package.json
+
+---------------Configurando KNEX--------------------------------------
+knex é um query builder, muito bom para trabalhar com bancos em memoria
+yarn add knex sqlite 3
+
+Arquivo de configuração de conexão ao banco de dados:
+https://github.com/ga-almeida/api-rest-nodejs/blob/main/src/database.ts
+
