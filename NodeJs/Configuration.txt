@@ -84,6 +84,15 @@ https://github.com/ga-almeida/api-rest-nodejs/blob/main/knexfile.ts
 Criar um script para o knex entender typescript:
 https://github.com/ga-almeida/api-rest-nodejs/blob/main/package.json#L9
 
+Migrations de exemplo:
+https://github.com/ga-almeida/api-rest-nodejs/tree/main/db/migrations
+
 Para criar uma migration basta rodar o comando:
 yarn knex -- migrate:make nome_da_migration
+
+Para rodar a migration, basta rodar o comando:
+yarn knex -- migrate:latest
+
+Para retornar a migration, basta rodar o comando:
+yarn knex -- migrate:rollback
 
